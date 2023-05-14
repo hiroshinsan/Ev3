@@ -1,10 +1,10 @@
-import Button from '@ev3/components/react/Button';
-import Input from '@ev3/components/react/Input';
-import Textarea from '@ev3/components/react/Textarea';
+import Button from '@ev3/components/tailwind/Button';
+import Input from '@ev3/components/tailwind/Input';
+import Textarea from '@ev3/components/tailwind/Textarea';
 
-import Checkbox from '@ev3/components/react/Checkbox';
-import Radio from '@ev3/components/react/Radio';
-import Switch from '@ev3/components/react/Switch';
+import Checkbox from '@ev3/components/tailwind/Checkbox';
+import Radio from '@ev3/components/tailwind/Radio';
+import Switch from '@ev3/components/tailwind/Switch';
 
 import Select from '@ev3/components/react/Select';
 
@@ -126,7 +126,10 @@ const Page = () => {
         <Checkbox label="Checkbox 1" value="Value 1" />
       </div>
       <div>
-        <Checkbox type="2" label="Checkbox 2" value="Value 2" />
+        <Checkbox error="something" label="Checkbox 2" value="Value 2" />
+      </div>
+      <div>
+        <Checkbox type="2" label="Checkbox 3" value="Value 3" />
       </div>
       <div>
         <Radio label="Radio 1" name="radio1" value="Value 1" />

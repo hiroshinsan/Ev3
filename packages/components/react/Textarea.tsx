@@ -11,6 +11,9 @@ export type TextareaProps = HTMLTextareaProps & {
 };
 //react
 import React from 'react';
+//helpers
+import { makeGroupClasses } from '../helpers/makeClasses';
+import { makeGroupStyles } from '../helpers/makeStyles';
 
 /**
  * Generic Textarea  Component (Main)
@@ -29,23 +32,15 @@ const Textarea: React.FC<TextareaProps> = (props) => {
     ...attributes 
   } = props;
 
-  if (styles !== false) {
-    //if container styles and errors, add error styles
-    if (styles.container !== false && error?.length) {
-      styles.container = Object.assign({}, {
+  const map = {
+    styles: makeGroupStyles(styles, {
+      container: error?.length ? {
         color: errorColor
-      }, styles.container || {});
-    }
-    //if label, make it into a block
-    if (styles.label !== false) {
-      styles.label = Object.assign({}, {
-        display: 'block'
-      }, styles.container || {});
-    }
-    //if control, add default styles
-    if (styles.control !== false) {
-      styles.control = Object.assign({}, {
-        borderColor: 'black',
+      } : undefined,
+      label: { display: 'block' },
+      field: undefined,
+      control: {
+        borderColor: error?.length ? errorColor: 'black',
         borderStyle: 'solid',
         borderWidth: '1px',
         color: 'black',
@@ -54,28 +49,16 @@ const Textarea: React.FC<TextareaProps> = (props) => {
         paddingRight: '8px',
         paddingTop: '8px',
         width: '100%'
-      }, styles.control || {});
-      if (error?.length) {
-        styles.control.borderColor = errorColor;
-      }
-    }
-  }
-
-  const map = {
-    styles: {
-      container: styles && styles.container ? styles.container : undefined,
-      label: styles && styles.label ? styles.label : undefined,
-      field: styles && styles.field ? styles.field : undefined,
-      control: styles && styles.control ? styles.control : undefined,
-      error: styles && styles.error ? styles.error : undefined
-    },
-    classNames: {
-      container: classNames && classNames.container ? classNames.container : undefined,
-      label: classNames && classNames.label ? classNames.label : undefined,
-      field: classNames && classNames.field ? classNames.field : undefined,
-      control: classNames && classNames.control ? classNames.control : undefined,
-      error: classNames && classNames.error ? classNames.error : undefined
-    }
+      },
+      error: undefined
+    }),
+    classNames: makeGroupClasses(classNames, {
+      container: undefined,
+      label: undefined,
+      field: undefined,
+      control: undefined,
+      error: undefined
+    })
   };
 
   const change = (e: ChangeEvent<HTMLTextAreaElement>) => {

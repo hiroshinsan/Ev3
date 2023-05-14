@@ -12,6 +12,9 @@ export type RadioProps = HTMLInputProps & {
 };
 //react
 import React from 'react';
+//helpers
+import { makeGroupClasses } from '../helpers/makeClasses';
+import { makeGroupStyles } from '../helpers/makeStyles';
 
 /**
  * Radio  (Main)
@@ -36,66 +39,23 @@ const Radio: React.FC<RadioProps> = (props) => {
     onUpdate && onUpdate(e.target.checked);
   }
 
-  if (styles !== false) {
-    //if container styles and errors, add error styles
-    if (styles.container !== false && error?.length) {
-      styles.container = Object.assign({}, {
-        color: errorColor
-      }, styles.container || {});
-    }
-    //if label, make it into a block
-    if (styles.label !== false) {
-      styles.label = Object.assign({}, {
-        display: 'block'
-      }, styles.container || {});
-    }
-  }
-
-  if (classNames !== false && classNames.field !== false) {
-    classNames.field = `radio radio-${type} ${classNames.field || ''}`.trim();
-  }
-
   const map = {
-    styles: {
-      container: styles && styles.container 
-        ? styles.container 
-        : undefined,
-      label: styles && styles.label 
-        ? styles.label 
-        : undefined,
-      field: styles && styles.field 
-        ? styles.field 
-        : undefined,
-      control: styles && styles.control 
-        ? styles.control 
-        : undefined,
-      value: styles && styles.value 
-        ? styles.value 
-        : undefined,
-      error: styles && styles.error 
-        ? styles.error 
-        : undefined
-    },
-    classNames: {
-      container: classNames && classNames.container 
-        ? classNames.container 
-        : undefined,
-      label: classNames && classNames.label 
-        ? classNames.label 
-        : undefined,
-      field: classNames && classNames.field 
-        ? classNames.field 
-        : undefined,
-      control: classNames && classNames.control 
-        ? classNames.control 
-        : undefined,
-      value: classNames && classNames.value 
-        ? classNames.value 
-        : undefined,
-      error: classNames && classNames.error 
-        ? classNames.error 
-        : undefined
-    }
+    styles: makeGroupStyles(styles, {
+      container: error?.length ? {
+        color: errorColor
+      } : undefined,
+      label: { display: 'block' },
+      field: undefined,
+      control: undefined,
+      error: undefined
+    }),
+    classNames: makeGroupClasses(classNames, {
+      container: undefined,
+      label: undefined,
+      field: `radio radio-${type}`,
+      control: undefined,
+      error: undefined
+    })
   };
   return (
     <div className={map.classNames.container} style={map.styles.container}>

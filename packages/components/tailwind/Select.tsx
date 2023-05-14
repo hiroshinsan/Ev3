@@ -32,9 +32,6 @@ export type SelectProps = {
 import React, { useState } from 'react';
 //components
 import Input from './Input';
-//helpers
-import { makeGroupClasses } from '../helpers/makeClasses';
-import { makeGroupStyles } from '../helpers/makeStyles';
 
 /**
  * Select Dropdown - Can be used separately (like in autocomplete)
@@ -51,43 +48,61 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = (props) => {
     match 
   } = props;
 
-  const map = {
-    styles: makeGroupStyles(styles, {
-      dropdown: {
+  if (styles !== false) {
+    //if dropdown styles, add default styles
+    if (styles.dropdown !== false) {
+      styles.dropdown = Object.assign({}, {
         backgroundColor: '#EFEFEF',
         borderColor: 'black',
         borderStyle: 'solid',
         borderBottomWidth: '1px',
         borderLeftWidth: '1px',
         borderRightWidth: '1px',
-        display: !show ? 'none': undefined,
         marginTop: '-1px',
         position: 'absolute',
         width: '100%'
-      },
-      searchField: {
+      }, styles.dropdown || {});
+      if (!show) {
+        styles.dropdown.display = 'none';
+      }
+    }
+    //if search field styles, add default styles
+    if (styles.searchField !== false) {
+      styles.searchField = Object.assign({}, {
         paddingBottom: '4px',
         paddingLeft: '4px',
         paddingRight: '4px',
         paddingTop: '4px',
         position: 'relative'
-      },
-      searchControl: {
+      }, styles.searchField || {});
+    }
+    //if search field styles, add default styles
+    if (styles.searchControl !== false) {
+      styles.searchControl = Object.assign({}, {
         paddingRight: '32px'
-      },
-      searchIcon: {
+      }, styles.searchControl || {});
+    }
+    //if search icon styles, add default styles
+    if (styles.searchIcon !== false) {
+      styles.searchIcon = Object.assign({}, {
         backgroundColor: 'white',
         color: 'black',
         padding: '4px',
         position: 'absolute',
         right: '9px',
         top: '9px'
-      },
-      options: {
+      }, styles.searchIcon || {});
+    }
+    //if options styles, add default styles
+    if (styles.options !== false) {
+      styles.options = Object.assign({}, {
         maxHeight: '256px',
         overflow: 'auto'
-      },
-      option: {
+      }, styles.options || {});
+    }
+    //if option styles, add default styles
+    if (styles.option !== false) {
+      styles.option = Object.assign({}, {
         alignItems: 'center',
         borderColor: '#AAAAAA',
         borderStyle: 'solid',
@@ -98,16 +113,52 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = (props) => {
         paddingLeft: '12px',
         paddingRight: '12px',
         paddingTop: '8px'
-      }
-    }),
-    classNames: makeGroupClasses(classNames, {
-      dropdown: undefined,
-      searchField: undefined,
-      searchControl: undefined,
-      searchIcon: undefined,
-      options: undefined,
-      option: undefined
-    })
+      }, styles.option || {});
+    }
+    
+  }
+
+  const map = {
+    styles: {
+      dropdown: styles && styles.dropdown 
+        ? styles.dropdown 
+        : undefined,
+      searchField: styles && styles.searchField 
+        ? styles.searchField 
+        : undefined,
+      searchControl: styles && styles.searchControl 
+        ? styles.searchControl 
+        : undefined,
+      searchIcon: styles && styles.searchIcon 
+        ? styles.searchIcon 
+        : undefined,
+      options: styles && styles.options 
+        ? styles.options 
+        : undefined,
+      option: styles && styles.option 
+        ? styles.option 
+        : undefined
+    },
+    classNames: {
+      dropdown: classNames && classNames.dropdown 
+        ? classNames.dropdown 
+        : undefined,
+      searchField: classNames && classNames.searchField 
+        ? classNames.searchField 
+        : undefined,
+      searchControl: classNames && classNames.searchControl 
+        ? classNames.searchControl 
+        : undefined,
+      searchIcon: classNames && classNames.searchIcon 
+        ? classNames.searchIcon 
+        : undefined,
+      options: classNames && classNames.options 
+        ? classNames.options 
+        : undefined,
+      option: classNames && classNames.option 
+        ? classNames.option 
+        : undefined
+    }
   };
 
   return (
@@ -200,21 +251,31 @@ const Select: React.FC<SelectProps> = (props) => {
     onUpdate && onUpdate(option.value);
   };
 
-  const map = {
-    styles: makeGroupStyles(styles, {
-      container: {
-        position: 'relative',
-        color: error?.length ? errorColor: undefined
-      },
-      label: { display: 'block' },
-      field: undefined,
-      control: {
+  if (styles !== false) {
+    //if container styles and errors, add error styles
+    if (styles.container !== false) {
+      styles.container = Object.assign({}, {
+        position: 'relative'
+      }, styles.container || {});
+      if (error?.length) {
+        styles.container.color = errorColor;
+      }
+    }
+    //if label, make it into a block
+    if (styles.label !== false) {
+      styles.label = Object.assign({}, {
+        display: 'block'
+      }, styles.container || {});
+    }
+    //if control, add default styles
+    if (styles.control !== false) {
+      styles.control = Object.assign({}, {
         alignItems: 'center',
         backgroundColor: 'white',
-        borderColor: error?.length ? errorColor :'black',
+        borderColor: 'black',
         borderStyle: 'solid',
         borderWidth: '1px',
-        color: error?.length ? errorColor :'black',
+        color: 'black',
         display: 'flex',
         paddingBottom: '8px',
         paddingLeft: '8px',
@@ -222,16 +283,49 @@ const Select: React.FC<SelectProps> = (props) => {
         paddingTop: '8px',
         whiteSpace: 'nowrap',
         width: '100%'
-      },
-      error: undefined
-    }),
-    classNames: makeGroupClasses(classNames, {
-      container: undefined,
-      label: undefined,
-      field: undefined,
-      control: undefined,
-      error: undefined
-    })
+      }, styles.control || {});
+      if (error?.length) {
+        styles.control.color = errorColor;
+        styles.control.borderColor = errorColor;
+      }
+    }
+  }
+
+  const map = {
+    styles: {
+      container: styles && styles.container 
+        ? styles.container 
+        : undefined,
+      label: styles && styles.label 
+        ? styles.label 
+        : undefined,
+      field: styles && styles.field 
+        ? styles.field 
+        : undefined,
+      control: styles && styles.control 
+        ? styles.control 
+        : undefined,
+      error: styles && styles.error 
+        ? styles.error 
+        : undefined
+    },
+    classNames: {
+      container: classNames && classNames.container 
+        ? classNames.container 
+        : undefined,
+      label: classNames && classNames.label 
+        ? classNames.label 
+        : undefined,
+      field: classNames && classNames.field 
+        ? classNames.field 
+        : undefined,
+      control: classNames && classNames.control 
+        ? classNames.control 
+        : undefined,
+      error: classNames && classNames.error 
+        ? classNames.error 
+        : undefined
+    }
   };
 
   return (
