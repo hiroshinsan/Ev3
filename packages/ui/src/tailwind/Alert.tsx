@@ -43,12 +43,6 @@ const Alert: React.FC<AlertProps> = props => {
     : success ? 'border-[#28A745]'
     : muted ? 'border-[#999999]'
     : undefined;
-
-  const icon = error ? 'before:content-icon-error'
-    : warning ? 'before:content-icon-warning'
-    : info ? 'before:content-icon-info'
-    : success ? 'before:content-icon-success'
-    : undefined;
   
   const text = error ? 'text-[#DC3545]'
     : warning ? 'text-[#FFC107]'
@@ -66,11 +60,6 @@ const Alert: React.FC<AlertProps> = props => {
     classes: makeClasses(className, [
       'px-5', 
       'py-4',
-      icon ? 'before:font-awesome' : undefined,
-      icon ? 'before:font-black' : undefined,
-      icon ? 'before:inline-block' : undefined,
-      icon ? 'before:pr-3' : undefined,
-      icon,
       'border',
       round,
       border,

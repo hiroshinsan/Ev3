@@ -46,6 +46,9 @@ const Fields: React.FC<FieldsProps<MetadataType>> = (props) => {
         marginBottom: '4px'
       },
       button: {
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
         paddingBottom: '4px',
         paddingLeft: '16px',
         paddingRight: '16px',
@@ -161,7 +164,7 @@ const Fields: React.FC<FieldsProps<MetadataType>> = (props) => {
         style={map.styles.button}
         className={map.classNames.button}
       >
-        <i className="fas fa-times"></i>
+        &times;
       </Button>
     </div>
   );

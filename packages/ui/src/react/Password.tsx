@@ -29,28 +29,25 @@ const Password: React.FC<PasswordProps> = (props) => {
       field: { display: 'flex' },
       control: undefined,
       toggle: {
-        padding: '8px',
+        alignItems: 'center',
         backgroundColor: '#EEEEEE',
         borderColor: error ? errorColor : 'black',
         borderStyle: 'solid',
         borderBottomWidth: '1px',
         borderRightWidth: '1px',
         borderTopWidth: '1px',
-        color: error ? errorColor : '#666666'
-      },
-      icon: {
-        marginTop: '1px'
+        color: error ? errorColor : '#666666',
+        cursor: 'pointer',
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '0 16px',
+        textAlign: 'center'
       }
     }),
     classNames: makeGroupClasses(classNames, {
       field: undefined,
       control: undefined,
-      toggle: undefined,
-      icon: [
-        'fas',
-        'fa-fw',
-        showing ? 'fa-eye-slash': 'fa-eye'
-      ].filter(Boolean).join(' ').trim()
+      toggle: undefined
     })
   };
 
@@ -68,7 +65,7 @@ const Password: React.FC<PasswordProps> = (props) => {
         className={map.classNames.toggle} 
         onClick={toggle}
       >
-        <i style={map.styles.icon} className={map.classNames.icon}></i>
+        {showing ? '*': 'A' }
       </span>
     </div>
   );

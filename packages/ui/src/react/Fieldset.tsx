@@ -65,7 +65,7 @@ export default function make<ValueType = any>(
           onClick={handlers.add}
           type="button"
         >
-          <i className="fas fa-plus" style={{ marginRight: '2px' }} />
+          <span style={{ marginRight: '2px' }}>&#43;</span>
           {label || 'Add'}
         </Button>
       </>

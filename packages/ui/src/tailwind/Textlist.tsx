@@ -35,7 +35,12 @@ const Fields: React.FC<FieldsProps<TextlistType>> = (props) => {
         'flex',
         'mb-0.5'
       ].filter(Boolean).join(' '),
-      button: 'ml-0.5',
+      button: [
+        'items-center',
+        'flex',
+        'justify-center',
+        'ml-0.5'
+      ].filter(Boolean).join(' '),
       value: undefined
     })
   };
@@ -59,7 +64,7 @@ const Fields: React.FC<FieldsProps<TextlistType>> = (props) => {
         style={styles !== false ? map.styles.button: false}
         className={map.classNames.button}
       >
-        <i className="fas fa-times"></i>
+        &times;
       </Button>
     </div>
   );

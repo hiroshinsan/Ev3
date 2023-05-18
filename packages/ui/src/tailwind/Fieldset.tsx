@@ -65,7 +65,7 @@ export default function make<ValueType = any>(
           onClick={handlers.add}
           type="button"
         >
-          <i className="fas fa-plus mr-0.5" />
+          <span className="mr-0.5">&#43;</span>
           {label || 'Add'}
         </Button>
       </>

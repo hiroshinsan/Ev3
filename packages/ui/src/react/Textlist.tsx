@@ -32,6 +32,9 @@ const Fields: React.FC<FieldsProps<TextlistType>> = (props) => {
         marginBottom: '4px'
       },
       button: {
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
         marginLeft: '2px',
         paddingBottom: '4px',
         paddingLeft: '16px',
@@ -76,7 +79,7 @@ const Fields: React.FC<FieldsProps<TextlistType>> = (props) => {
         style={styles !== false ? map.styles.button: false}
         className={map.classNames.button}
       >
-        <i className="fas fa-times"></i>
+        &times;
       </Button>
     </div>
   );

@@ -117,8 +117,19 @@ export type ButtonProps = HTMLButtonProps & {
 export type CheckboxProps = HTMLInputProps & {
   label?: string,
   error?: any,
-  theme?: string|number,
+  color?: string,
+  check?: boolean,
+  circle?: boolean,
+  square?: boolean,
+  sharp?: boolean,
+  rounded?: boolean,
+  outline?: boolean,
+  solid?: boolean,
   errorColor?: string,
+  style?: React.CSSProperties,
+  className?: string,
+  styles?: Record<string, React.CSSProperties|false|undefined>|false,
+  classNames?: Record<string, string|false|undefined>|false,
   onUpdate?: (value: string|number|undefined, checked: boolean) => void
 };
 
@@ -186,6 +197,8 @@ export type FieldsProps<ValueType = any> = {
 
 // Input component
 export type InputConfig = {
+  checked?: boolean,
+  defaultChecked?: boolean,
   onChange?: Function, 
   onUpdate?: Function
 };
@@ -271,8 +284,19 @@ export type PasswordProps = InputProps & {
 export type RadioProps = HTMLInputProps & {
   label?: string,
   error?: any,
-  theme?: string|number,
+  color?: string,
+  check?: boolean,
+  circle?: boolean,
+  square?: boolean,
+  sharp?: boolean,
+  rounded?: boolean,
+  outline?: boolean,
+  solid?: boolean,
   errorColor?: string,
+  style?: React.CSSProperties,
+  className?: string,
+  styles?: Record<string, React.CSSProperties|false|undefined>|false,
+  classNames?: Record<string, string|false|undefined>|false,
   onUpdate?: (value: string|number|undefined, checked: boolean) => void
 };
 
@@ -348,8 +372,21 @@ export type SelectCurrencyProps = ExtendsType<SelectProps, {
 export type SwitchProps = HTMLInputProps & {
   label?: string,
   error?: any,
+  rounded?: boolean,
+  onoff?: boolean,
+  yesno?: boolean,
+  checkex?: boolean,
+  sunmoon?: boolean,
+  knob?: 'none'|'ridge'|'checkex',
+  blue?: boolean,
+  orange?: boolean,
+  green?: boolean,
   theme?: string|number,
   errorColor?: string,
+  style?: React.CSSProperties,
+  className?: string,
+  styles?: Record<string, React.CSSProperties|false|undefined>|false,
+  classNames?: Record<string, string|false|undefined>|false,
   onUpdate?: (value: string|number|undefined, checked: boolean) => void
 };
 

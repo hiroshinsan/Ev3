@@ -38,25 +38,13 @@ const Alert: React.FC<AlertProps> = props => {
     : muted ? '#999999'
     : undefined;
 
-  const icon = error ? 'before:content-icon-error'
-    : warning ? 'before:content-icon-warning'
-    : info ? 'before:content-icon-info'
-    : success ? 'before:content-icon-success'
-    : undefined;
-
   const round = curved ? '5px' 
     : rounded ? '12px' 
     : pill ? '10000px' 
     : undefined;
 
   const map = {
-    classes: makeClasses(className, [
-      icon ? 'before:font-awesome' : undefined,
-      icon ? 'before:font-black' : undefined,
-      icon ? 'before:inline-block' : undefined,
-      icon ? 'before:pr-3' : undefined,
-      icon
-    ].filter(Boolean).join(' ')),
+    classes: makeClasses(className, ''),
     styles: makeStyles(style, {
       borderColor: colour,
       borderRadius: round,

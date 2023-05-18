@@ -34,18 +34,17 @@ const Password: React.FC<PasswordProps> = (props) => {
       field: 'flex',
       control: undefined,
       toggle: [
-        'p-2',
+        'items-center',
         'bg-[#EEEEEE]',
         'border-y',
         'border-r',
         error ? 'border-[#DC3545]' :'border-black',
+        'cursor-pointer',
+        'flex',
+        'justify-center',
+        'px-4',
+        'text-center',
         error ? 'text-[#DC3545]' :'text-[#666666]'
-      ].filter(Boolean).join(' ').trim(),
-      icon: [
-        'fas',
-        'fa-fw',
-        showing ? 'fa-eye-slash': 'fa-eye',
-        'mt-0.5'
       ].filter(Boolean).join(' ').trim()
     })
   };
@@ -64,7 +63,7 @@ const Password: React.FC<PasswordProps> = (props) => {
         className={map.classNames.toggle} 
         onClick={toggle}
       >
-        <i style={map.styles.icon} className={map.classNames.icon}></i>
+        {showing ? '*': 'A' }
       </span>
     </div>
   );

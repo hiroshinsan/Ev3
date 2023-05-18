@@ -59,6 +59,9 @@ const Fields: React.FC<FieldsProps<MetadataType>> = (props) => {
         'mb-0.5'
       ].filter(Boolean).join(' '),
       button: [
+        'items-center',
+        'flex',
+        'justify-center',
         'py-1',
         'px-4'
       ].filter(Boolean).join(' '),
@@ -158,7 +161,7 @@ const Fields: React.FC<FieldsProps<MetadataType>> = (props) => {
         style={map.styles.button}
         className={map.classNames.button}
       >
-        <i className="fas fa-times"></i>
+        &times;
       </Button>
     </div>
   );

@@ -38,6 +38,9 @@ const Page = () => {
       setComplete(['big', 'small', 'medium', 'large', 'extra large'])
     }, 500)
   };
+  const [ radio1, setRadio1 ] = useState<any>();
+  const [ radio2, setRadio2 ] = useState<any>();
+  const [ radio3, setRadio3 ] = useState<any>();
   const options = [
     {label: 'Option 1', value: 'option-1', keyword: 'option1'},
     {label: (<em className="font-bold">Option 2</em>), value: 'option-2', keyword: 'option2'},
@@ -83,60 +86,62 @@ const Page = () => {
         <Textarea defaultValue="value 3" onUpdate={console.log} />
       </Control>
       <Control label="Radio 1" className="mt-2">
-        <Radio name="radio1" label="Radio A" />
+        <Radio label="Radio A" checked={radio1 === 1} onChange={() => setRadio1(1)} />
         <span className="mx-4">
-          <Radio name="radio1" label="Radio B" />
+          <Radio label="Radio B" check color="#FF893C" checked={radio1 === 2} onChange={() => setRadio1(2)} />
         </span>
-        <Radio name="radio1" label="Radio C" />
+        <Radio label="Radio C" square solid sharp checked={radio1 === 3} onChange={() => setRadio1(3)} />
       </Control>
       <Control label="Radio 2" className="mt-2" error="something">
-        <Radio name="radio2" label="Radio D" theme="2" value={1} error={true} onUpdate={console.log} />
+        <Radio label="Radio D" square solid error={true} checked={radio2 === 1} onChange={() => setRadio2(1)} onUpdate={console.log} />
         <span className="mx-4">
-          <Radio name="radio2" label="Radio E" theme="2" value="2" error={true} onUpdate={console.log} />
+          <Radio label="Radio E" sharp check color="#28A745" error={true} checked={radio2 === 2} onChange={() => setRadio2(2)} onUpdate={console.log} />
         </span>
-        <Radio name="radio2" label="Radio F" theme="2" error={true} onUpdate={console.log} />
+        <Radio label="Radio F" error={true} checked={radio2 === 3} onChange={() => setRadio2(3)} onUpdate={console.log} />
       </Control>
       <Control label="Radio 3" className="text-xs my-4">
-        <Radio name="radio3" label="Radio G" />
+        <Radio label="Radio G" checked={radio3 === 1} onChange={() => setRadio3(1)} />
         <span className="mx-4">
-          <Radio name="radio3" label="Radio H" />
+          <Radio label="Radio H" checked={radio3 === 2} onChange={() => setRadio3(2)} />
         </span>
-        <Radio name="radio3" label="Radio I" />
+        <Radio label="Radio I" checked={radio3 === 3} onChange={() => setRadio3(3)} />
       </Control>
       <Control label="Checkbox 1" className="mt-2">
         <Checkbox label="Checkbox A" />
         <span className="mx-4">
-          <Checkbox label="Checkbox B" theme="2" />
+          <Checkbox label="Checkbox B" color="#FF893C" circle sharp />
         </span>
+        <Checkbox label="Checkbox C" solid square />
       </Control>
       <Control label="Checkbox 2" className="mt-2" error="something">
-        <Checkbox error={true} label="Checkbox C"  value={2} onUpdate={console.log} />
+        <Checkbox error={true} label="Checkbox D" color="#FF893C" solid rounded value={2} onUpdate={console.log} />
         <span className="mx-4">
-          <Checkbox error={true} label="Checkbox D" theme="2" onUpdate={console.log} />
+          <Checkbox error={true} label="Checkbox E" circle onUpdate={console.log} />
         </span>
+        <Checkbox error={true} label="Checkbox F" rounded square value="3" onUpdate={console.log} />
       </Control>
       <Control label="Checkbox 3" className="text-xs my-4">
-        <Checkbox label="Checkbox E" />
+        <Checkbox label="Checkbox G" />
         <span className="mx-4">
-          <Checkbox label="Checkbox F" theme="2" />
+          <Checkbox label="Checkbox H" />
         </span>
       </Control>
       <Control label="Switch 1" className="mt-2">
         <Switch label="Switch A" value="1" onUpdate={console.log} />
         <span className="mx-4">
-          <Switch label="Switch B" theme="2" value={2} onUpdate={console.log} />
+          <Switch label="Switch B" value={2} onUpdate={console.log} rounded onoff blue />
         </span>
-        <Switch label="Switch C" theme="3" onUpdate={console.log} />
+        <Switch label="Switch C" onUpdate={console.log} checkex orange knob="ridge" />
       </Control>
       <Control label="Switch 2" className="text-xs my-4">
-        <Switch label="Switch D" theme="4" />
+        <Switch label="Switch D" rounded knob="ridge" green />
       </Control>
       <Control label="Switch 3" className="mt-2" error="something">
-        <Switch error={true} label="Switch E" theme="5" />
+        <Switch error={true} label="Switch E" knob="checkex" green />
         <span className="mx-4">
-          <Switch error={true} label="Switch F" theme="6" />
+          <Switch error={true} label="Switch F" rounded sunmoon orange />
         </span>
-        <Switch error={true} label="Switch G" theme="7" />
+        <Switch error={true} label="Switch G" blue knob="ridge" />
       </Control>
       <Control label="Date 1">
         <DateField defaultValue={new Date()} onUpdate={console.log} />
@@ -323,18 +328,42 @@ const Page = () => {
         <Button pill xl transparent muted>Button 15</Button>
       </div>
       <div className="mt-8">
-        <Alert success>Alert 1</Alert>
-        <Alert warning curved className="mt-1">Alert 2</Alert>
-        <Alert error rounded className="mt-1">Alert 3</Alert>
-        <Alert info pill className="mt-1">Alert 4</Alert>
+        <Alert success>
+          <i className="fas fa-check-circle mr-2"></i>
+          Alert 1
+        </Alert>
+        <Alert warning curved className="mt-1">
+          <i className="fas fa-exclamation-circle mr-2"></i>
+          Alert 2
+        </Alert>
+        <Alert error rounded className="mt-1">
+          <i className="fas fa-times-circle mr-2"></i>
+          Alert 3
+        </Alert>
+        <Alert info pill className="mt-1">
+          <i className="fas fa-info-circle mr-2"></i>
+          Alert 4
+        </Alert>
         <Alert muted className="mt-1">Alert 5</Alert>
         <Alert color="#006699" className="mt-1">Alert 6</Alert>
       </div>
       <div className="mt-8">
-        <Alert outline success>Alert 1</Alert>
-        <Alert outline curved warning className="mt-1">Alert 2</Alert>
-        <Alert outline rounded error className="mt-1">Alert 3</Alert>
-        <Alert outline pill info className="mt-1">Alert 4</Alert>
+        <Alert outline success>
+          <i className="fas fa-check-circle mr-2"></i>
+          Alert 1
+        </Alert>
+        <Alert outline curved warning className="mt-1">
+          <i className="fas fa-exclamation-circle mr-2"></i>
+          Alert 2
+        </Alert>
+        <Alert outline rounded error className="mt-1">
+          <i className="fas fa-times-circle mr-2"></i>
+          Alert 3
+        </Alert>
+        <Alert outline pill info className="mt-1">
+          <i className="fas fa-info-circle mr-2"></i>
+          Alert 4
+        </Alert>
         <Alert outline muted className="mt-1">Alert 5</Alert>
         <Alert outline color="#006699" className="mt-1">Alert 6</Alert>
       </div>
